@@ -25,7 +25,7 @@ function start() {
 function tick() {
     // setup next tick
     if (!isGameOver) {
-        tickTimeoutId = setTimeout(tick, 2000);
+        tickTimeoutId = setTimeout(tick, 500);
     }
 
     // TODO: Do stuff
@@ -36,7 +36,7 @@ function tick() {
     };
     while (currentSnakeBodyPart !== null) {
         writeToCell(currentSnakeBodyPart.data.row, currentSnakeBodyPart.data.col, 0);
-        currentSnakeBodyPart.next;
+        currentSnakeBodyPart = currentSnakeBodyPart.next;
     }
 
     moveSnake(head);
@@ -49,7 +49,7 @@ function tick() {
 
     while (currentSnakeBodyPart !== null) {
         writeToCell(currentSnakeBodyPart.data.row, currentSnakeBodyPart.data.col, 1);
-        currentSnakeBodyPart.next;
+        currentSnakeBodyPart = currentSnakeBodyPart.next;
     }
 
     // display the model in full
