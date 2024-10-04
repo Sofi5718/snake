@@ -34,22 +34,27 @@ function tick() {
         row: snake.tail.data.row,
         col: snake.tail.data.col,
     };
-    while (currentSnakeBodyPart != null) {
+    while (currentSnakeBodyPart !== null) {
         writeToCell(currentSnakeBodyPart.data.row, currentSnakeBodyPart.data.col, 0);
         currentSnakeBodyPart.next;
     }
+
     moveSnake(head);
+
     snake.enQueue(head);
+
     snake.deQueue();
+
     currentSnakeBodyPart = snake.head;
 
-    while (currentSnakeBodyPart) {
+    while (currentSnakeBodyPart !== null) {
         writeToCell(currentSnakeBodyPart.data.row, currentSnakeBodyPart.data.col, 1);
         currentSnakeBodyPart.next;
     }
 
     // display the model in full
     displayBoard();
+
     if (isGameOver) {
         clearTimeout(tickTimeoutId);
         stopGame();
@@ -77,6 +82,7 @@ function handleKeyPress(event) {
 
 // ****** MODEL ******
 // #region model
+let model;
 let snake;
 let dicrection = "right";
 
@@ -134,8 +140,6 @@ function moveSnake(head) {
             break;
     }
 }
-
-let model;
 
 function initModel(rows, cols) {
     const newGrid = Array(rows);
